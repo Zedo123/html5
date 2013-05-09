@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>testowanie html5 i js</title>
+	<script type="text/javascript">
+		function myfunction() {
+			//			var a = 5;
+			//			var b = 2;
+			//			var result = a + b;
+			alert(Add(11, 3));
+		}
+		function Add(x, y) {
+			return (x + y)
+		}
+
+		function initApplication(instance) {
+			var contenet = instance.GetApplicationContent();
+			var renderer = initRenderer(instance, contenet, 512, 512);
+
+			renderer.createShader(function () {
+				var vertices = [
+			0, 0, 0,
+			1, 0, 0,
+			1, 1, 0
+			];
+
+				var texcoords = [
+			0, 0,
+			1, 0,
+			1, 1
+			];
+
+				var verterbuffer = renderer.createVertexBuffer(vertices, texcoords, null);
+
+				var texture = renderer.createTextureFromURL("desert.jpg");
+
+				setInterval(function () {
+					renderer.Render();
+					texture.Draw();
+					verterbuffer.Draw();
+				}, 20);
+
+			});
+		}
+
+
+	</script>
+</head>
+<body>
+	<button type="button" onclick="initApplication()">
+		wykonaj</button>
+</body>
+</html>
